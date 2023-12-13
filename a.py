@@ -4,6 +4,8 @@ from tkinter import messagebox
 from datetime import datetime
 from tkinter.filedialog import *
 import os
+import csv
+import pandas as pd
 
 class CalendarApp():
     def __init__(self, root):
@@ -93,14 +95,20 @@ class CalendarApp():
             lb.pack()
         
         #파일 불러오기
-        
         def open_file():
-            file = askopenfile(parent=memo_dialog, mode='r')
-            if file != None:
-                text = file.read()
-                text_area.insert('1.0', text)
-                file.close
-                    
+            try:
+                file = askopenfile(parent=memo_dialog, mode='r')
+                if file != None:
+                    text = file.read()
+                    text_area.insert('1.0', text)
+                    file.close
+            except UnicodeDecodeError:
+                    error = tk.Toplevel(memo_dialog)
+                    error.geometry('300x50+850+400')
+                    error.title('확장자 에러')
+                    elb = tk.Label(error, text='지원하지 않는 확장자 입니다.\n.txt파일로 열어주세요.')
+                    elb.pack()
+                       
         # 메모 다이얼로그 표시
         memo_dialog = tk.Toplevel(self.root)
         memo_dialog.title(f"Memo for {self.year.get()}-{self.month.get()}-{day}")
