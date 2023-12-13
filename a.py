@@ -108,6 +108,16 @@ class CalendarApp():
                     error.title('확장자 에러')
                     elb = tk.Label(error, text='지원하지 않는 확장자 입니다.\n.txt파일로 열어주세요.')
                     elb.pack()
+            
+        #def csv_to_text(file_path):
+        #    dt = ""
+        #    with open(file_path, 'r', newline='', encoding='utf-8') as csv_file:
+        #        csv_reader = csv.reader(csv_file)
+        #        
+        #        for row in csv_reader:
+        #            dt += '\t'.join(row) + '\n'
+        #    return dt
+        
                        
         # 메모 다이얼로그 표시
         memo_dialog = tk.Toplevel(self.root)
