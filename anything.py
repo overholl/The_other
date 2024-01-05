@@ -71,8 +71,24 @@ def tutorial():
     tt.resizable(False,False)
     tlb.pack()
 
+def confirm(ntbx):
+    nick = ntbx.get()
+    playerlabel.configure(text=nick)
+
+def change_nickname():
+    nt = tk.Toplevel(window)
+    nt.title("닉 바꾸기")
+    nt.geometry("320x240")
+    ntbx = tk.Entry(nt, width=30)
+    ntbx.grid(column=0, row=0)
+    ntbtn = tk.Button(nt, text="확인", command=lambda: confirm(ntbx))
+    ntbtn.grid(column=0, row=1)
+
 btn = tk.Button(window, text="게임 진행하기", borderwidth= 1, width= 20, height= 3, command= processing_game)
 btn.place(x=250, y= 210)
+
+nickbtn = tk.Button(window, text="닉 바꾸기", borderwidth= 1, width= 10, height= 2, command= change_nickname)
+nickbtn.place(x=100, y= 380)
 
 menu = tk.Menu(window)
 menu1 = tk.Menu(menu, tearoff=0)
